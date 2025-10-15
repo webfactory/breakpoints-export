@@ -2,12 +2,12 @@
     "name": "@webfactoryde/breakpoints-export",
     "version": "1.0.0",
     "description": "A JS utility that syncs (S)CSS breakpoints with runtime JavaScript by exporting breakpoint maps as CSS custom properties and providing a tiny JS helper to read and compare them against the current viewport (e.g. bp.lessThan, bp.greaterThan).",
-    "main": "src/breakpoints-export.js",
-    "sass": "src/breakpoints-export.scss",
+    "main": "./src/breakpoints-export.js",
+    "style": "./src/breakpoints-export.scss",
     "exports": {
         ".": {
-            "sass": "./src/breakpoints-export.scss",
-            "default": "./src/breakpoints-export.js"
+            "default": "./src/breakpoints-export.js",
+            "sass": "./src/breakpoints-export.scss"
         }
     },
     "repository": {
