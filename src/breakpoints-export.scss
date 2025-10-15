@@ -1,0 +1,27 @@
+/**
+Outputs a set of CSS custom properties for breakpoints on :root.
+
+The mixin uses the provided $breakpoints map to write each entry as a CSS custom property
+on :root. This allows JavaScript (e. g. breakpoints-export.js) to read breakpoint values at runtime
+via getComputedStyle(document.documentElement) and keeps SCSS breakpoint definitions available to client-side code.
+
+@param {Map} $breakpoints - Map of breakpoint names to values (e.g., (small: 480px, medium: 768px)).
+
+@example
+// SCSS
+$breakpoints: (screen-small: 480px, screen-medium: 768px);
+@include breakpoints-export($breakpoints);
+
+// Output CSS
+:root {
+    --screen-small: 480px;
+    --screen-medium: 768px;
+}
+*/
+@mixin breakpoints-export($breakpoints) {
+    :root {
+        @each $name, $value in $breakpoints {
+            --#{$name}: #{$value};
+        }
+    }
+}
