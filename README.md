@@ -1,6 +1,6 @@
 # breakpoints-export Utility
 
-A JS utility that syncs (S)CSS breakpoints with runtime JavaScript by exporting breakpoint maps as CSS custom properties and providing a tiny JS helper to read and compare them against the current viewport (e.g. bp.lessThan, bp.greaterThan).
+A JS/SCSS utility that syncs (S)CSS breakpoints with runtime JavaScript by exporting breakpoint maps as CSS custom properties and providing a tiny JS helper to read and compare them against the current viewport (e.g. bp.lessThan, bp.greaterThan).
 
 ## Installation
 
