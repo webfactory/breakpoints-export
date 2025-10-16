@@ -12,16 +12,23 @@ via getComputedStyle(document.documentElement) and keeps SCSS breakpoint definit
 $breakpoints: (screen-small: 480px, screen-medium: 768px);
 @include breakpoints-export($breakpoints);
 
-// Output CSS
+// Computed CSS for a viewport of 575px:
 :root {
-    --screen-small: 480px;
-    --screen-medium: 768px;
+    --screen-small: active;
+    --screen-medium: inactive;
 }
 */
 @mixin breakpoints-export($breakpoints) {
     :root {
-        @each $name, $value in $breakpoints {
-            --#{$name}: #{$value};
+        @each $name, $outer-value in $map {
+            @media (min-width: $outer-value) {
+                @each $name, $inner-value in $map {
+                    $state: 'inactive';
+                    @if ($outer-value >= $inner-value) {$state: 'active';}
+
+                    --#{$name}: #{$state};
+                }
+            }
         }
     }
 }
