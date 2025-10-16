@@ -18,7 +18,7 @@ $breakpoints: (screen-small: 480px, screen-medium: 768px);
     --screen-medium: inactive;
 }
 */
-@mixin breakpoints-export($breakpoints) {
+@mixin breakpoints-export($map) {
     :root {
         @each $name, $outer-value in $map {
             @media (min-width: $outer-value) {
