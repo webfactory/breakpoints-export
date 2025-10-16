@@ -1,37 +1,25 @@
-/**
- * Returns the value of a breakpoint managed in a CSS Custom Property of the same name.
- *
- * @param {string} name - Name of the breakpoint
- * @param {boolean} asNumber - Controls whether the return value is a string with unit (px, em) or a number without unit
- * @returns {number|string} - Value of the CSS breakpoint
- */
 const bp = {
-    getBreakpoint(name, asNumber = true) {
-        const threshold = getComputedStyle(document.documentElement)
+    /**
+     * Returns the state of a breakpoint in relation to the current viewport. The breakpoints are managed in
+     * CSS Custom Properties of the same name that are in turn updated via CSS Media Queries.
+     *
+     * @param {string} name - Name of the breakpoint
+     * @returns {boolean} – State of the breakpoint for the current viewport
+     */
+    isBreakpointActive(name) {
+        const state = getComputedStyle(document.documentElement)
             .getPropertyValue(`--${name}`)
             .trim();
 
-        return asNumber ? parseInt(threshold) : threshold;
+        return state === 'active';
     },
 
     lessThan(breakpoint) {
-        let threshold = this.getBreakpoint(breakpoint);
-
-        if (!threshold) {
-            return false
-        } else {
-            return window.innerWidth < threshold;
-        }
+        return !this.isBreakpointActive(breakpoint);
     },
 
     greaterThan(breakpoint) {
-        let threshold = this.getBreakpoint(breakpoint);
-
-        if (!threshold) {
-            return false
-        } else {
-            return window.innerWidth >= threshold;
-        }
+        return this.isBreakpointActive(breakpoint);
     },
 }
 
