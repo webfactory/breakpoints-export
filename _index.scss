@@ -1,0 +1,2 @@
+// Entry point for `@use '@webfactoryde/breakpoints-export'` when resolving via load paths (e.g. node_modules)
+@forward 'src/breakpoints-export';
